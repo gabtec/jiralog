@@ -32,11 +32,11 @@ data:
   "2025-08-29":
     # VDS-xxxx: the ticket ID
     VDS-1111:
-	  # start: the time task started, if defined must be HH:MM, default is 09:00
+      # start: the time task started, if defined must be HH:MM, default is 09:00
       start: "09:00" 
-	  # timeSpent: 30m, [1-8]h, or combination of "xh 30m", max 8h per day
+      # timeSpent: 30m, [1-8]h, or combination of "xh 30m", max 8h per day
       timeSpent: "30m" 
-	  # description: an optional comment to add to work log, default is ""
+      # description: an optional comment to add to work log, default is ""
       description: Daily
     VDS-1122:
       timeSpent: "3h"
