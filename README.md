@@ -2,6 +2,23 @@
 
 To log work hours into jira
 
+## Install
+- download the binary that match your system, from [releases, here](https://github.com/gabtec/jiralog/releases)
+- in macOS
+```sh
+tar -xzf jiralog_Darwin_arm64.tar.gz
+
+# move it to /usr/local/bin
+sudo cp jiralog /usr/local/bin/jiralog
+
+
+# if issues with macOS blacklist the binary
+xattr -dr com.apple.quarantine ./your-binary
+codesign -s - --deep --force ./your-binary
+
+
+````
+
 ## Usage
 - a jira apiKey is required as env var named: **JIRA_API_TOKEN**
 - a jira server baseUrl is required as env var named: **JIRA_BASE_URL**
@@ -30,6 +47,9 @@ data:
 ## Usage
 
 ```sh
+# check version
+jiralog version # or -v, --version, version
+
 # it will read a worklog.yaml file
 jiralog [-d]
 
