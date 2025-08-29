@@ -3,3 +3,4 @@ worklog.yaml
 .env
 
 build
+dist
