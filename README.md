@@ -3,6 +3,16 @@
 To log work hours into jira
 
 ## Install
+### Option 1
+- clone thos repo
+- run:
+```sh
+go build -o build/jiralog .
+
+sudo cp  build/jiralog /usr/local/bin/jiralog
+
+```
+### Option 2
 - download the binary that match your system, from [releases, here](https://github.com/gabtec/jiralog/releases)
 - in macOS
 ```sh
@@ -60,7 +70,7 @@ jiralog [-d]
 ## Build
 
 ```sh
-go build -o build/jiralog
+go build -o build/jiralog .
 ```
 
 ## ToDo

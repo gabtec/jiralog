@@ -1,8 +1,10 @@
 package utils
 
 import (
+	"fmt"
 	"gabtec/log-hours/models"
 	"log"
+	"os"
 	"regexp"
 )
 
@@ -18,9 +20,15 @@ func MustValidate(e models.Entry) bool {
 	}
 
 	// if date not from current week...
+	taskPrefix := os.Getenv("JIRA_PREFIX")
 
-	if !isValidTicketID(e.TaskID) {
-		log.Fatal("Task ID is not in a valid format, like VDS-1234 \nYou have: ", e.TaskID)
+	if taskPrefix == "" {
+		log.Fatal("Missing one required environment variables: JIRA_PREFIX")
+	}
+
+	if !isValidTicketID(e.TaskID, taskPrefix) {
+		msg := fmt.Sprintf("Task ID is not in a valid format, like %s-1234 \nYou have: %s", taskPrefix, e.TaskID)
+		log.Fatal(msg)
 	}
 
 	return true
@@ -32,8 +40,8 @@ func isValidDate(date string) bool {
 	return regex.MatchString(date)
 }
 
-func isValidTicketID(ticket string) bool {
-	pattern := `^VDS-\d+$`
+func isValidTicketID(ticket, prefix string) bool {
+	pattern := fmt.Sprintf("^%s-\\d+$", prefix)
 	matched, _ := regexp.MatchString(pattern, ticket)
 	return matched
 }
