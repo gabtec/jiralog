@@ -5,12 +5,12 @@ To log work hours into jira
 ## Install
 ### Option 1
 - clone thos repo
-- run:
+- run included script to release it locally:
 ```sh
-go build -o build/jiralog .
+git clone <this>
 
-sudo cp  build/jiralog /usr/local/bin/jiralog
-
+./release-local.sh
+# will ask sudo password to be able to write to /usr/local/bin path
 ```
 ### Option 2
 - download the binary that match your system, from [releases, here](https://github.com/gabtec/jiralog/releases)
@@ -55,6 +55,7 @@ data:
   "2025-08-30": {}   
 ```
 ## Usage
+- we recommend using the --dry-run option first
 
 ```sh
 # check version
