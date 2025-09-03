@@ -136,6 +136,6 @@ func main() {
 	wg.Wait()
 
 	// table
-	utils.BuildTable(sd)
+	utils.BuildTable(utils.SortTableData(sd))
 
 }
