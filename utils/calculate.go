@@ -38,8 +38,6 @@ func splitCompositeTimes(durations []string) []string {
 		parts := strings.Split(d, " ")
 		aux = append(aux, parts...)
 	}
-	fmt.Println("debug composite")
-	fmt.Printf("%v\n", aux)
 	return aux
 }
 
