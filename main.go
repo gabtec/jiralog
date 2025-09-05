@@ -19,6 +19,7 @@ type WorkLog struct {
 
 func main() {
 	var dryRun = false
+	var report = false
 
 	args := os.Args[1:]
 
@@ -39,7 +40,12 @@ func main() {
 			fmt.Println("[INFO]: Running in dry mode")
 		}
 
-		if !dryRun {
+		if arg == "-r" || arg == "--report" {
+			report = true
+			fmt.Println("[INFO]: Running in report mode")
+		}
+
+		if !(dryRun || report) {
 			fmt.Println("[ERROR]: Unknown flag.")
 			fmt.Println("")
 			utils.ShowUsage()
@@ -125,7 +131,7 @@ func main() {
 	// make api calls
 	var wg sync.WaitGroup
 	for _, record := range sd {
-		if !dryRun {
+		if !(dryRun || report) {
 			wg.Add(1)
 			go func(rec models.Entry) {
 				defer wg.Done()
@@ -136,6 +142,14 @@ func main() {
 	wg.Wait()
 
 	// table
-	utils.BuildTable(utils.SortTableData(sd))
+	sortedData := utils.SortTableData(sd)
+
+	if dryRun {
+		utils.BuildTable(sortedData)
+	}
+
+	if report {
+		utils.BuilKantataReport(sortedData)
+	}
 
 }
