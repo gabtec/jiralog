@@ -1,9 +1,9 @@
 data:
   "2025-08-29":
-    VDS-1111:
+    ABC-1111:
       timeSpent: "30m" # 30m, [1-8]h, or combination of "xh 30m", max 8h per day
       description: Daily
-    VDS-1122:
+    ABC-1122:
       timeSpent: "3h"
       description: Description is optional
       start: "09:00" # if defined must be HH:MM, default is 09:00

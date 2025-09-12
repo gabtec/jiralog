@@ -40,8 +40,6 @@ func BuildTable(sd models.SData) {
 	t.Render()
 }
 
-const devOpsTag = "VDS - RUN"
-
 func printHeader(idx int) string {
 	switch idx {
 	case 0:
@@ -58,12 +56,14 @@ func printHeader(idx int) string {
 	return ""
 }
 
-func BuilKantataReport(sd models.SData) {
+func BuilReport(sd models.SData, prefix, tag string) {
+
+	fullTag := fmt.Sprintf("%s - %s", prefix, tag)
 
 	var lastDate string
 	var day = 0
 
-	fmt.Println("[INFO]: Kantata Report:")
+	fmt.Println("[INFO]: Printing Report...")
 
 	for _, entry := range sd {
 
@@ -71,7 +71,7 @@ func BuilKantataReport(sd models.SData) {
 			fmt.Println("")
 			fmt.Println(printHeader(day), entry.Date)
 			fmt.Println("---------------------------------")
-			fmt.Println(devOpsTag)
+			fmt.Println(fullTag)
 			day += 1
 		}
 

@@ -149,7 +149,9 @@ func main() {
 	}
 
 	if report {
-		utils.BuilKantataReport(sortedData)
+		prefix := utils.GetStringEnv("JIRA_PREFIX", "ABC")
+		reportTag := utils.GetStringEnv("REPORT_TAG", "DEV")
+		utils.BuilReport(sortedData, prefix, reportTag)
 	}
 
 }
