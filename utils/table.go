@@ -39,3 +39,45 @@ func BuildTable(sd models.SData) {
 
 	t.Render()
 }
+
+func printHeader(idx int) string {
+	switch idx {
+	case 0:
+		return "MONDAY    - SEGUNDA: "
+	case 1:
+		return "TUESDAY   - TERÇA  : "
+	case 2:
+		return "WEDNESDAY - QUARTA : "
+	case 3:
+		return "THURSDAY  - QUINTA : "
+	case 4:
+		return "FRIDAY    - SEXTA  : "
+	}
+	return ""
+}
+
+func BuilReport(sd models.SData, prefix, tag string) {
+
+	fullTag := fmt.Sprintf("%s - %s", prefix, tag)
+
+	var lastDate string
+	var day = 0
+
+	fmt.Println("[INFO]: Printing Report...")
+
+	for _, entry := range sd {
+
+		if entry.Date != lastDate {
+			fmt.Println("")
+			fmt.Println(printHeader(day), entry.Date)
+			fmt.Println("---------------------------------")
+			fmt.Println(fullTag)
+			day += 1
+		}
+
+		row := entry.TaskID + ": " + entry.Description + " (" + entry.TimeSpent + ")"
+		fmt.Println(row)
+		lastDate = entry.Date
+
+	}
+}

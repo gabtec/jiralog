@@ -40,15 +40,15 @@ data:
   # Day 1
   # "YYYY-MM-DD": the date to log work in
   "2025-08-29":
-    # VDS-xxxx: the ticket ID
-    VDS-1111:
+    # ABC-xxxx: the ticket ID
+    ABC-1111:
       # start: the time task started, if defined must be HH:MM, default is 09:00
       start: "09:00" 
       # timeSpent: 30m, [1-8]h, or combination of "xh 30m", max 8h per day
       timeSpent: "30m" 
       # description: an optional comment to add to work log, default is ""
       description: Daily
-    VDS-1122:
+    ABC-1122:
       timeSpent: "3h"
       description: Description is optional
   # Day 2
@@ -78,7 +78,7 @@ go build -o build/jiralog .
 - [ ] Check if it duplicates same entry
 - [ ] Allow a -c another-filename.yaml
 - [ ] Validate date is from the cw
-- [x] Validate ticket VDS-xxxx
+- [x] Validate ticket ABC-xxxx
 - [x] Validate start, if existent, as HH:MM
 - [x] Validate date yyy-mm-dd format
 - [x] add total working hours per day
