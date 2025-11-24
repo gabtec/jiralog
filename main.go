@@ -18,6 +18,11 @@ type WorkLog struct {
 }
 
 func main() {
+	err := godotenv.Load()
+	if err != nil {
+		log.Fatal("Error loading .env file")
+	}
+
 	var dryRun = false
 	var report = false
 
@@ -32,6 +37,11 @@ func main() {
 	for _, arg := range args {
 		if arg == "-v" || arg == "--version" || arg == "version" {
 			fmt.Printf("%s (r), version: %s\n", constants.AppName, constants.Version)
+			os.Exit(0)
+		}
+
+		if arg == "-i" || arg == "--init" {
+			utils.InitNewWeek(9999, "./z")
 			os.Exit(0)
 		}
 
@@ -53,10 +63,6 @@ func main() {
 		}
 	}
 
-	err := godotenv.Load()
-	if err != nil {
-		log.Fatal("Error loading .env file")
-	}
 
 	// Read the YAML file
 	fileContent, err := os.ReadFile("worklog.yaml")
